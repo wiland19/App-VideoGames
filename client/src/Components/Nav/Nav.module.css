@@ -1,0 +1,47 @@
+
+.container {
+  width: 100%;
+  margin-left: auto;
+  left: 60px;
+  padding-bottom: 16px;
+  background-color: rgb(98, 177, 177);
+  backdrop-filter: blur(5px);
+  z-index: 10;
+  padding-bottom: 1rem;
+}
+
+.cosas {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 15%;
+  padding-right: 100px;
+}
+
+.menuh {
+  font-size: 15px;
+  padding-top: 5px;
+  padding-left: 25px;
+  transition: 0.3s;
+  height: 20px;
+  width: fit-content;
+  cursor: pointer;
+  color: rgb(7, 7, 7);
+  text-decoration: none;
+  font-size: 130%;
+  margin-right: 40px;
+}
+
+.menuh:hover {
+  text-shadow: 3px 3px 5px rgb(10, 10, 1);
+  transform: scale(1.1);
+
+}
+
+.main {
+  font-size: 20px;
+  padding-left: 15px;
+  transition: 0.3s;
+  font-weight: bolder;
+  text-decoration: none;
+  color: rgb(12, 12, 12)
+}

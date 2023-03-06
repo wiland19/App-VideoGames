@@ -1,0 +1,65 @@
+.card {
+  background: linear-gradient(to bottom, rgb(144, 10, 227), rgb(1, 1, 19));
+
+  padding-top: 0.5%;
+  padding-bottom: 5%;
+  padding-left: 0.5%;
+  transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+  width: 340px;
+  margin-bottom: 4%;
+  margin-left: 2%;
+  font-size: 100%;
+  font-display: none;
+  display: inline-block;
+  border-radius: 10%;
+  text-decoration-line: none;
+  text-align: center;
+  border: 6px solid rgb(12, 12, 12);
+
+
+}
+
+.card :hover .image {
+  transform: scale(1.1);
+  border: 8px solid #666;
+
+}
+
+.card :hover {
+
+  color: rgb(187, 146, 44);
+
+}
+
+
+.card h3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: rgb(10, 10, 10);
+  text-decoration-line: none;
+  font-size: 20px;
+
+}
+
+.card h4  {
+  Color: rgb(10, 10, 10)
+}
+.card h5  {
+  Color: white
+}
+
+.line {
+  text-decoration-line: none;
+}
+
+
+.image {
+  width: 280px;
+  height: 380px;
+  border-radius: 40px;
+  border: 8px solid #000000;
+  transition: all 0.3s cubic-bezier(0.075, 0.82, 0.165, 1)
+}

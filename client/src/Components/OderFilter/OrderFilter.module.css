@@ -1,0 +1,27 @@
+.Filter {
+  width: 100%;
+  left: 50px;
+  padding-bottom: 2px;
+  background-color: goldenrod;
+  backdrop-filter: blur(25px);
+  z-index: 10;
+  padding-bottom: 1rem;
+}
+
+.cosas {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 5%;
+  padding-right: 1 0px;
+}
+
+.p {
+  color: black;
+  font-size: 11px;
+}
+
+.box {
+  padding: 0.5px;
+  background-color: rgb(98, 177, 177);
+
+}
