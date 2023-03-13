@@ -21,7 +21,10 @@ export default function OrderFilter({
     <div>
       <div className={styles.cosas}>
         <div>
-          <button onClick={() => window.location.reload()}>
+          <button
+            onClick={() => window.location.reload()}
+            className={styles.btn}
+          >
             ⌛⏳ Refresh Filters ⌛⏳
           </button>
         </div>

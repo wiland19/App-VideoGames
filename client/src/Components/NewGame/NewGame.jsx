@@ -262,7 +262,7 @@ export default function Create() {
         ))}
         <div>
           <Link to="/home">
-            <button className="volver">Back to Home</button>
+            <button className={styles.btn}>Back to Home</button>
           </Link>
         </div>
       </div>

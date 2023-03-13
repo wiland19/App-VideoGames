@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import styles from "./Game.module.css";
-import Loading from "../Loading/Loading";
 
 export default function CountryDetail(props) {
   // const { id } = useParams();
@@ -56,7 +55,7 @@ export default function CountryDetail(props) {
       </div>
 
       <Link to="/home">
-        <button className={styles.button}> Back </button>
+        <button className={styles.btn}> Back </button>
       </Link>
     </div>
   );

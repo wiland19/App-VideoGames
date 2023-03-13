@@ -39,7 +39,7 @@ export default function SearchBar({ setCurrentPage }) {
           type="submit"
           onClick={(e) => handleSubmit(e)}
         >
-          <span className={styles.button22}>Search</span>
+          <span className={styles.btn}>Search</span>
         </button>
       </form>
     </div>

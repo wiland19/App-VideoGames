@@ -79,3 +79,45 @@
   border-color: #0a0a0a;
   background-color: #b71af52a;
 }
+
+.btn {
+  background: #fff;
+  /* color de fondo */
+  color: #4741d7;
+  /* color de fuente */
+  border: 2px solid #4741d7;
+  /* tamaño y color de borde */
+  padding: 16px 20px;
+  border-radius: 3px;
+  /* redondear bordes */
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.btn:hover {
+  color: #fff;
+  /* color de fuente hover */
+}
+
+.btn::after {
+  content: "";
+  background: #4741d7;
+  /* color de fondo hover */
+  position: absolute;
+  z-index: -1;
+  padding: 16px 20px;
+  display: block;
+  left: -20%;
+  right: -20%;
+  top: 0;
+  bottom: 0;
+  transform: skewX(-45deg) scale(0, 1);
+  transition: all 0.3s ease;
+}
+
+.btn:hover::after {
+  transition: all 0.3s ease-out;
+  transform: skewX(-45deg) scale(1, 1);
+}
