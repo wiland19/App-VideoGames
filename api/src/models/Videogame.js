@@ -40,7 +40,7 @@ module.exports = (sequelize) => {
       allowNull:false,
     },
     rating: {
-      type: DataTypes.REAL,
+      type: DataTypes.DECIMAL(10,2),
       allowNull:false,
     },
      // a traves de esta propiedad podemos acceder de forma mas facil a los pokemons en la bD

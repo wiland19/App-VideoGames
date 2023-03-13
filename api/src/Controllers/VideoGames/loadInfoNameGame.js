@@ -10,38 +10,52 @@ const { getDbInfo } = require("./loadInfoGames");
 //---------------- Buscamos el Name del Games en la info de la Api----------------
 //------------------------------------------------------------------
 
-const getNameInfo = async (name) => {
-  const searchName = (await axios.get(URL, {
+const getInfoName = async (name) => {
+  const searchName = await axios.get(URL, {
     params: { key: API_KEY, search: name },
-  })).data;
+  });
 
-  const result = searchName.results.slice(0, 15).map(game=>{
-        return {
-            id: game.id,
-          name: game.name,
-            released:game.released,
-            image: game.background_image,
-          rating: game.rating,
-          platforms:game.platforms.map((e)=> e.platform.name),
-          genres: game.genres.map((e) => e.name),
-        }
-    })
+  const response = searchName.data.results;
 
-  
-  // //---------------- Buscamos el Name del Games en la Db----------------
-// //------------------------------------------------------------------
-    const searchDb = await Videogame.findAll({
-        where: {
-            name: {
-                [Op.like]: `${name}%`
-            }
-        }
-    })
-  
-  // //------------------Sumo la info de la api + la info de la db----
-// //---------------------------------------------------------------
-    return result.concat(searchDb)
+  const result = response.slice(0, 15).map(game => {
+    return {
+      id: game.id,
+      name: game.name,
+      released: game.released,
+      image: game.background_image,
+      rating: game.rating,
+      platforms: game.platforms.map((e) => e.platform.name),
+      genres: game.genres.map((e) => e.name),
+    }
+  })
+  return result;
 
 }
 
-module.exports = {  getNameInfo };
+  
+// //---------------- Buscamos el Name del Games en la Db----------------
+// //------------------------------------------------------------------
+    
+
+const getInfoDb = async (name) => {
+
+  const info = await getDbInfo();
+  const infoName = await info.filter((x) => x.name.toLowerCase().includes(name.toLowerCase));
+
+  return infoName;
+}
+
+// //---------------- Game Name  en la Db + APi----------------
+// //------------------------------------------------------------------
+
+const getNameInfo = async (name) => {
+  
+  const apiName = await getInfoName(name);
+  const dBName = await getInfoDb(name);
+  const infoTotal = dBName.concat(apiName);
+
+  return infoTotal;
+
+}
+
+module.exports = { getNameInfo };

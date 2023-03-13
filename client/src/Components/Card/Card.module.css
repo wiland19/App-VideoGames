@@ -38,14 +38,14 @@
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  color: rgb(10, 10, 10);
+  color: gold;
   text-decoration-line: none;
   font-size: 20px;
 
 }
 
 .card h4  {
-  Color: rgb(10, 10, 10)
+  Color: rgb(255, 255, 255)
 }
 .card h5  {
   Color: white

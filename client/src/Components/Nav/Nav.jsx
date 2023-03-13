@@ -16,21 +16,8 @@ export default function Nav() {
       <nav>
         <div className={styles.cosas}>
           <div>
-            <Link
-              className={styles.menuh}
-              to="/home"
-              onClick={() => handleDispatch()}
-            >
-              Home
-            </Link>
-            <Link className={styles.menuh} to="/games">
-              {" "}
-              Create Game
-            </Link>
-
-            <Link className={styles.menuh} to="/genres">
-              {" "}
-              Genres{" "}
+            <Link className={styles.menuh} to="/game">
+              <button>Create Game</button>
             </Link>
           </div>
           <div>

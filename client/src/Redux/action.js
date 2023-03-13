@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ALL_GAMES, GET_GAMES_BY_NAME, GET_GAMES_BY_ID, GET_GENRES, FILTER_BY_GENRES, FILTER_BY_API, FILTER_CREATED, ORDER_BY_NAME, ORDER_BY_RATING, ADD_NEW_GAME,CLEAR_GAME } from "./actionType";
+import { GET_ALL_GAMES, GET_GAMES_BY_NAME, GET_GAMES_BY_ID, GET_GENRES, FILTER_BY_GENRES,  FILTER_CREATED, ORDER_BY_NAME, ORDER_BY_RATING,CLEAR_GAME } from "./actionType";
 
 
 //------------------------>
@@ -14,13 +14,13 @@ export const getGames = () => {
 
     try {
       const allGames = await axios.get('http://localhost:3001/games');
-      if (allGames.data) {
+      
         return dispatch({
           type: GET_ALL_GAMES,
           payload: allGames.data
       
         })
-      }
+      
       
     } catch (error) {
       console.log(error);
@@ -94,17 +94,25 @@ export function getGenres() {
 };
 
 
+// export function addGame(body) {
+//     return function(dispatch) {
+//         axios.post('http://localhost:3001/games',body)
+//         .then(response => {
+//         dispatch({
+//             type: ADD_NEW_GAME,
+//             payload: response.data,
+//         })
+//     })
+// }
+// };
+
 export function addGame(body) {
-    return function(dispatch) {
-        axios.post('http://localhost:3001/games',body)
-        .then(response => {
-        dispatch({
-            type: ADD_NEW_GAME,
-            payload: response.data,
-        })
-    })
+  return async function (dispatch) {
+    const response = axios.post('http://localhost:3001/games', body);
+    return response;
+  }
+  
 }
-};
 
 export const filterByGenres = (payload) => {
   return {
@@ -133,10 +141,10 @@ export const orderRating = (payload) => {
   }
 };
 
-export function clearGame() {
+export function clear() {
   return {
     type: CLEAR_GAME,
-    payload: []
+    
   }
 }
 

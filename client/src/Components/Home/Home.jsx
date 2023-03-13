@@ -14,6 +14,7 @@ import {
   orderGames,
   orderRating,
   filterByGenres,
+  filterCreated,
 } from "../../Redux/action";
 
 // import styles from "./Home.module.css";
@@ -23,6 +24,7 @@ import Nav from "../Nav/Nav";
 import OrderFilter from "../OderFilter/OrderFilter";
 import Card from "../Card/Card";
 import Pagination from "../Pagination/Pagination";
+import Loading from "../Loading/Loading";
 
 export default function Home() {
   //declaro la variable del dispatch
@@ -49,24 +51,15 @@ export default function Home() {
   const indexFirstGame = indexLastGame - gamesPage; // se calcula
 
   //9 paises primer pagina
-  const [firstPage, setFirstPage] = useState(15);
-  const difference = gamesPage - firstPage;
 
   //paises a mostar
   const currentGames = allGames?.slice(indexFirstGame, indexLastGame); //muestra desde el primero hasta el ultimo si existe
 
-  // const currentGames = allGames.slice(
-  //   currentPage === 1 ? indexFirstGame : indexFirstGame - difference,
-  //   indexLastGame - difference
-  // );
-
   //Limitar
-  const [limitMaxPage, setLimitMaxPage] = useState(10);
-  const [limitMinPage, setLimitMinPage] = useState(0);
+  // const [limitMaxPage, setLimitMaxPage] = useState(10);
+  // const [limitMinPage, setLimitMinPage] = useState(0);
   const [, /* orderN */ setOrderName] = useState([]);
   const [, /* orderP */ setOrderRating] = useState([]);
-  const [, /* orderC */ setOrderContinent] = useState([]);
-  const pageLimitNumber = gamesPage;
 
   //pagination
 
@@ -76,29 +69,18 @@ export default function Home() {
 
   // //functions nuevas
 
-  function onPrevClick() {
-    if ((currentPage - 1) % pageLimitNumber === 0) {
-      setLimitMaxPage(limitMaxPage - pageLimitNumber);
-      setLimitMinPage(limitMinPage - pageLimitNumber);
-    }
-    setCurrentPage((prev) => prev - 1);
-  }
-  function onNextClick() {
-    if (currentPage + 1 > limitMaxPage === 0) {
-      setLimitMaxPage(limitMaxPage + pageLimitNumber);
-      setLimitMinPage(limitMinPage + pageLimitNumber);
-    }
-    setCurrentPage((prev) => prev + 1);
-  }
-
   //Functions Orders
+
+  function handleClick(e) {
+    e.preventDefault();
+    dispatch(getGames());
+  }
 
   function handleOrderName(e) {
     e.preventDefault();
     dispatch(orderGames(e.target.value));
     setCurrentPage(1);
     setOrderName(`Ordered by: ${e.target.value}`);
-    e.target.value = "default";
   }
   function handleOrderRating(e) {
     e.preventDefault();
@@ -107,33 +89,17 @@ export default function Home() {
     setOrderRating(`Ordered by: ${e.target.value}`);
   }
   function handleFilterCreated(e) {
-    e.preventDefault();
-    dispatch(orderRating(e.target.value));
     setCurrentPage(1);
+    dispatch(filterCreated(e.target.value));
   }
 
   function handleFilterGenre(e) {
-    e.preventDefault();
-    dispatch(filterByGenres(e.target.value));
     setCurrentPage(1);
+    dispatch(filterByGenres(e.target.value));
   }
-
-  // function handleRefresh(e) {
-  //   e.preventDefault();
-  //   dispatch(getCountries());
-  //   setCurrentPage(1);
-  // }
 
   return (
     <div>
-      {/* <button
-        className={styles.button}
-        onClick={(e) => {
-          handleRefresh(e);
-        }}
-      >
-        Refresh Filters
-      </button> */}
       <div>
         <Nav />
       </div>
@@ -144,21 +110,18 @@ export default function Home() {
           handleOrderRating={handleOrderRating}
           handleFilterGenre={handleFilterGenre}
           handleFilterCreated={handleFilterCreated}
+          handleClick={handleClick}
         />
 
         <Pagination
-          onNextClick={onNextClick}
-          onPrevClick={onPrevClick}
           gamesPage={gamesPage}
           pagination={pagination}
-          limitMaxPage={limitMaxPage}
-          limitMinPage={limitMinPage}
           allGames={allGames.length}
         />
       </div>
 
-      <div>
-        {currentGames?.map((game) => {
+      {currentGames.length ? (
+        currentGames.map((game) => {
           return (
             <Card
               key={game.id}
@@ -169,8 +132,10 @@ export default function Home() {
               genres={game.genres}
             />
           );
-        })}
-      </div>
+        })
+      ) : (
+        <Loading />
+      )}
     </div>
   );
 }

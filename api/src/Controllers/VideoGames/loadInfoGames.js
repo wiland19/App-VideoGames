@@ -62,10 +62,21 @@ const getInfoTotal = async () => {
   
   const infoApi = await getApiInfo();
   let infoDb = await getDbInfo();
-
- 
-
   
+  infoDb = infoDb.map((x) => {
+    return {
+      id: x.dataValues.id,
+      name: x.dataValues.name,
+      description: x.dataValues.description,
+      released: x.dataValues.released,
+      rating: x.dataValues.rating,
+      platforms: x.dataValues.platforms,
+      image: x.dataValues.image,
+      createdInDb: true,
+      genres: x.dataValues.genres.map((e) => e.dataValues.name),
+    }
+  })
+
 
   const infoTotal = infoDb.concat(infoApi);
 
@@ -73,4 +84,4 @@ const getInfoTotal = async () => {
 
 };
 
-module.exports = { getApiInfo, getDbInfo, getInfoTotal };
+module.exports = { getDbInfo, getInfoTotal };

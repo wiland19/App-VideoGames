@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { getGamesByName } from "../../Redux/action";
 import styles from "./SearchBar.module.css";
 
-export default function SearchBar() {
+export default function SearchBar({ setCurrentPage }) {
   //declaro la variable del dispatch
   const dispatch = useDispatch();
   const [name, setName] = useState("");
@@ -19,15 +19,9 @@ export default function SearchBar() {
   //submmit
   function handleSubmit(e) {
     e.preventDefault();
-    if (name !== "") {
-      dispatch(getGamesByName(name));
-      setName("");
-    } else {
-      alert("Please enter a game name");
-    }
-
-    // e.preventDefault();
-    // dispatch(getCountriesByName(name));
+    dispatch(getGamesByName(name));
+    setCurrentPage(1);
+    setName("");
   }
 
   return (

@@ -1,53 +1,49 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch /*  useSelector */ } from "react-redux";
 import { getGames, getGenres } from "../../Redux/action";
 import styles from "./OrderFilter.module.css";
 
 export default function OrderFilter({
   handleOrderName,
   handleOrderRating,
-  handleFilterByApi,
   handleFilterCreated,
-  handleFilterByDb,
   handleFilterGenre,
 }) {
   const dispatch = useDispatch();
-  const allGames = useSelector((state) => state.allGames);
+  // const allGames = useSelector((state) => state.allGames);
 
   useEffect(() => {
     dispatch(getGames());
     dispatch(getGenres());
   }, [dispatch]);
 
-  let Names = [];
-  allGames.forEach((game) => {
-    game.genres?.forEach((genre) => {
-      if (!Names.includes(genre.name)) {
-        Names.push(genre.name);
-      }
-    });
-  });
-
   return (
     <div>
       <div className={styles.cosas}>
-        <p className={styles.p}> FILTER EXISTING</p>
-        <select
-          className={styles.box}
-          onChange={(e) => {
-            handleFilterCreated(e);
-          }}
-        >
-          <option value="" selected disabled>
-            Select...
-          </option>
-          <option value="All"> All </option>
-          <option value="api"> Api </option>
-          <option value="created"> Created </option>
-        </select>
+        <div>
+          <button onClick={() => window.location.reload()}>
+            ⌛⏳ Refresh Filters ⌛⏳
+          </button>
+        </div>
+        <div>
+          <p className={styles.p}> Filter Existing</p>
+          <select
+            className={styles.box}
+            onChange={(e) => {
+              handleFilterCreated(e);
+            }}
+          >
+            <option value="" selected disabled>
+              Select...
+            </option>
+            <option value="All"> All </option>
+            <option value="api"> Api </option>
+            <option value="creados"> Created </option>
+          </select>
+        </div>
 
         <div>
-          <p className={styles.p}>ORDER BY NAME</p>
+          <p className={styles.p}>Order By Name</p>
           <select
             className={styles.box}
             onChange={(e) => {
@@ -63,7 +59,7 @@ export default function OrderFilter({
         </div>
 
         <div>
-          <p className={styles.p}>ORDER BY RATING</p>
+          <p className={styles.p}>Order By Name</p>
           <select
             className={styles.box}
             onChange={(e) => {
@@ -79,7 +75,7 @@ export default function OrderFilter({
         </div>
 
         <div>
-          <p className={styles.p}>FILTER BY GENRE</p>
+          <p className={styles.p}>Filter By Genre</p>
           <select className={styles.box} onChange={(e) => handleFilterGenre(e)}>
             <option value="" selected disabled>
               Select...

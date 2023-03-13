@@ -1,68 +1,33 @@
-.container {
-  /* background-image: url(https://fondosmil.com/fondo/72089.jpg); */
-  background-repeat: no-repeat;
-  background-size: auto;
-  padding-top: 15px;
-  width: 100%;
-  height: 120vh;
+ .container {
+   /* background-image: url(https://fondosmil.com/fondo/72089.jpg); */
+   background-repeat: no-repeat;
+   padding-top: 15px;
+   width: 100%;
+   height: 120vh;
 
-}
+ }
 
-.card {
-  color: black;
-  line-height: 10px;
-  max-width: 90%;
-  list-style: none;
-  font-size: 1, 5rem;
-  text-align: center;
-  background: linear-gradient(to bottom, gold, rgb(27, 27, 121));
-  box-shadow: 5px 5px 15px #01070e;
-  border-radius: 25px;
-  border: ridge;
-  border-width: 4px;
-  border-color: #01070e;
-  min-height: 700px;
-  max-width: 550px;
-  margin: auto;
-  opacity: 0.8;
-  border: 6px solid rgb(12, 12, 12);
-}
-.card p{
- text-align: justify;
-}
+ .card {
+   color: black;
+   line-height: 18px;
+    text-align: center;
+   
+   
+   font-size: 0.9rem;
+  
+   background: linear-gradient(to bottom,rgb(12, 12, 12), rgb(144, 10, 227));
+   box-shadow: 2px 2px 15px #01070e;
+   border-radius: 25px;
+   border: ridge;
+   border-width: 4px;
+   border-color: #0a72ea;
+   min-height: 500px;
+   max-width: 700px;
+   margin: auto;
+   opacity: 0.8;
+   border: 1px solid rgb(12, 12, 12);
+ }
 
-.image {
-  border-radius: 10px;
-  border: 35px;
-  border: solid;
-  /* fijamos ancho y alto para reservar espacio */
-  width: 370px;
-  height: 290px;
-
-}
-
-.activity {
-  list-style: none;
-  display: flex;
-  justify-content: space-evenly;
-  padding-top: 0px;
-}
-
-.button {
-  background-color: #101010;
-  /* Green */
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  border-radius: 25px;
-}
-
-.button:hover {
-  background-color: #4CAF50;
-  /* Green */
-  color: white;
-}
+ .card p {
+  text-align: justify;
+ }

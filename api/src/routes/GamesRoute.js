@@ -14,35 +14,23 @@ const router = Router();
 
 
 
-router.get("/", async function(req, res) {
-    const { name } = req.query;
+
+router.get("/", async function (req, res) {
+  const { name } = req.query;
   try {
-      
     if (name) {
-      
-      const nameGames = await getNameInfo(name);
-      if (nameGames.length) {
-        res.status(200).json(nameGames);
-      } else {
-        res.status(400).send("VideoGame Not Found");
-      }
-      // si no encuentro nada por name
+      const infoGame = await getNameInfo(name);
+      res.status(200).json(infoGame);
+
     } else {
-
-      const allGames = await getInfoTotal();
-
-      if (allGames) {
-         res.status(200).json(allGames);  
-      } else {
-        res.status(400).send("Countries Not Found");
-      }
+      const gamesAll = await getInfoTotal();
+      res.status(200).json(gamesAll);
     }
-       
-    } catch (error) {
-   return(error)
-    }
-});
-
+  } catch (error) {
+    res.status(400).json({message:error.message});
+    
+  }
+})
 
 router.get("/:id", async function (req, res) {
   

@@ -1,5 +1,5 @@
 
-import { GET_ALL_GAMES, GET_GAMES_BY_NAME, GET_GAMES_BY_ID, GET_GENRES, FILTER_BY_GENRES, FILTER_BY_API, FILTER_BY_DB,FILTER_CREATED, ORDER_BY_NAME, ORDER_BY_RATING, ADD_NEW_GAME,CLEAR_GAME } from "./actionType";
+import { GET_ALL_GAMES, GET_GAMES_BY_NAME, GET_GAMES_BY_ID, GET_GENRES, FILTER_BY_GENRES, ORDER_BY_NAME, ORDER_BY_RATING, ADD_NEW_GAME,CLEAR_GAME,FILTER_CREATED } from "./actionType";
 
 
 
@@ -10,8 +10,7 @@ const initialState = {
   gamesName:[],
   genres: [],
   gameDetail: [],
-  filtered: [],
-  clear:[]
+  
   
 }
 
@@ -25,10 +24,6 @@ export default function reducer(state = initialState, action) {
         ...state,
         games: action.payload,
         allGames: action.payload,
-        // countriesName: action.payload,
-        // // activities: [],
-        // // countryDetail: [],
-        // filtered:action.payload,
       };
     
     case GET_GAMES_BY_NAME:
@@ -57,15 +52,15 @@ export default function reducer(state = initialState, action) {
       let orderName;
       if (action.payload === "ASC") {
         orderName = state.allGames.sort((a, b) => {
-          if (a.name > b.name) return 1;
-          if (a.name < b.name) return -1;
+          if (a.name.toUpperCase() > b.name.toUpperCase()) return 1;
+          if (a.name.toUpperCase() < b.name.toUpperCase()) return -1;
           return 0;
         });
       };
       if (action.payload === "DESC") {
         orderName = state.allGames.sort((a, b) => {
-          if (a.name > b.name) return -1;
-          if (a.name < b.name) return 1;
+          if (a.name.toUpperCase() > b.name.toUpperCase()) return -1;
+          if (a.name.toUpperCase() < b.name.toUpperCase()) return 1;
           return 0;
         });
       }
@@ -96,22 +91,22 @@ export default function reducer(state = initialState, action) {
         games: filterGame
       };
 
-    case FILTER_CREATED:
-      const gamesT = state.allGames;
-
-      const createdFilter =
-        action.payload === "created"
-          ? gamesT.filter((el) => el.createdInDb)
-          : gamesT.filter((el) => !el.createdInDb);
-      return {
-        ...state,
-        allGames: action.payload === "All" ? state.games : createdFilter,
-      };
+   case FILTER_CREATED:
+      const allGames = state.allGames
+      
+      const filter = action.payload === "creados"  ? allGames.filter((el) => el.createdInDb)
+          : allGames.filter((el) => !el.createdInDb);
+            // const created = action.payload
+            // const filter  = created === 'creados'?allGames.slice(100): allGames.slice(0,100)
+            return {
+                ...state,
+                games: action.payload === "All" ? allGames : filter
+            }
     
     case CLEAR_GAME:
       return {
         ...state,
-        clear:[],
+        gameDetail:[],
       };
 
     

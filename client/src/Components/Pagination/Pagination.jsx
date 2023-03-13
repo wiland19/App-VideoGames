@@ -4,12 +4,9 @@ import styles from "./Pagination.module.css";
 export default function Pagination({
   gamesPage,
   pagination,
-  limitMaxPage,
-  limitMinPage,
+
   allGames,
   currentPage,
-  onPrevClick,
-  onNextClick,
 }) {
   const [pageNumbers, setPageNumbers] = useState([]);
 
@@ -19,89 +16,7 @@ export default function Pagination({
       pageNumbers.push(i);
     }
     setPageNumbers(pageNumbers);
-  }, [
-    allGames,
-    gamesPage,
-    pagination,
-    onNextClick,
-    onPrevClick,
-    limitMaxPage,
-    limitMinPage,
-  ]);
-
-  const handleNextClick = () => {
-    onNextClick();
-  };
-
-  const handlePrevClick = () => {
-    onPrevClick();
-  };
-
-  const Numbers = pageNumbers.map((page) => {
-    if (page <= limitMaxPage && page > limitMinPage) {
-      return (
-        <button
-          key={page}
-          onClick={() => {
-            pagination(page);
-          }}
-        >
-          {page}
-        </button>
-      );
-    } else return null;
-  });
-
-  //   return (
-  //     <div>
-  //       <button
-  //         onClick={() => handlePrevClick()}
-  //         disabled={currentPage === pageNumbers[0]}
-  //       >
-  //         {"<<"}
-  //       </button>
-  //       {Numbers}
-  //       {
-  //         <button
-  //           onClick={() => handleNextClick()}
-  //           disabled={currentPage === pageNumbers[pageNumbers.length - 1]}
-  //         >
-  //           {" "}
-  //           {">>"}{" "}
-  //         </button>
-  //       }
-  //     </div>
-  //   );
-  // }
-
-  //   return (
-  //     <div>
-  //       <div>
-  //         <button
-  //           onClick={handlePrevClick}
-  //           disabled={currentPage === pageNumbers[0]}
-  //         >
-  //           {" "}
-  //           {"<<"}{" "}
-  //         </button>
-  //         {/* {pageDecremenEllipses} */}
-
-  //         {Numbers}
-
-  //         {/* {pageIncrementEllipses} */}
-  //         {
-  //           <button
-  //             onClick={handleNextClick}
-  //             disabled={currentPage === pageNumbers[pageNumbers.length - 1]}
-  //           >
-  //             {" "}
-  //             {">>"}{" "}
-  //           </button>
-  //         }
-  //       </div>
-  //     </div>
-  //   );
-  // }
+  }, [allGames, gamesPage, pagination]);
 
   return (
     <nav>
